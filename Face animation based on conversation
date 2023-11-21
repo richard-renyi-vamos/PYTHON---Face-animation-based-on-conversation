@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import time
+import random
+
+def draw_face(expression):
+    fig, ax = plt.subplots()
+    ax.set_xlim([-1, 1])
+    ax.set_ylim([-1, 1])
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+    # Draw face features
+    circle = plt.Circle((0, 0), 0.8, color='gold', fill=False)  # Head
+    ax.add_artist(circle)
+
+    eye_left = plt.Circle((-0.4, 0.3), 0.1, color='black')  # Left eye
+    eye_right = plt.Circle((0.4, 0.3), 0.1, color='black')  # Right eye
+    ax.add_artist(eye_left)
+    ax.add_artist(eye_right)
+
+    if expression == 'happy':
+        mouth = plt.Circle((0, -0.3), 0.3, color='red', fill=False)  # Happy mouth
+    elif expression == 'sad':
+        mouth = plt.Circle((0, -0.5), 0.3, color='blue', fill=False)  # Sad mouth
+    else:
+        mouth = plt.Circle((0, -0.3), 0.3, color='black', fill=False)  # Default mouth
+    ax.add_artist(mouth)
+
+    plt.show()
+    time.sleep(2)
+    plt.close()
+
+# Example conversation sentiments
+conversation_sentiments = ['happy', 'sad', 'neutral', 'happy', 'neutral', 'happy']
+
+# Simulating animated face based on conversation sentiments
+for sentiment in conversation_sentiments:
+    draw_face(sentiment)
